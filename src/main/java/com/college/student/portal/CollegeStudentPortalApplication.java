@@ -1,13 +1,13 @@
-package com.studentPortal;
+package com.college.student.portal;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class InternshipApplication {
+public class CollegeStudentPortalApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(InternshipApplication.class, args);
+		SpringApplication.run(CollegeStudentPortalApplication.class, args);
 	}
 
 }
