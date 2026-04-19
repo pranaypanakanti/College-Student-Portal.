@@ -92,9 +92,3 @@ mvn test
 ```
 http://localhost:8080/swagger-ui.html
 ```
-
-## 👨‍💻 Author
-Pranay Panakanti
-
-## 📜 License
-This project is for educational purposes.
