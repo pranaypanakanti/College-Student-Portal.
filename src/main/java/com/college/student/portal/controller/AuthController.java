@@ -3,10 +3,7 @@ package com.college.student.portal.controller;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.college.student.portal.dto.ForgotPasswordDTO;
 import com.college.student.portal.dto.ResetPasswordDTO;
@@ -36,5 +33,11 @@ public class AuthController {
     public ResponseEntity<Map<String, Object>> resetPassword(
             @Valid @RequestBody ResetPasswordDTO dto) {
         return passwordResetService.resetPassword(dto);
+    }
+
+    // Health Check
+    @GetMapping("/health-check")
+    public String healthCheck() {
+        return "Positive";
     }
 }
