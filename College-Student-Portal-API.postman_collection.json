@@ -1,0 +1,3196 @@
+{
+  "info": {
+    "_postman_id": "9b0d97b0-1e95-4eef-ac2f-a77c18e4c9e8",
+    "name": "College Student Portal - Complete API Tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "46121101",
+    "_collection_link": "https://go.postman.co/collection/46121101-9b0d97b0-1e95-4eef-ac2f-a77c18e4c9e8?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Auth - Registration",
+      "item": [
+        {
+          "name": "Register Admin",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Validate status\r",
+                  "pm.test(\"Status is 201 Created\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Admin registration successful with correct role\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json.message).to.eql(\"Admin Registration Successful!\");\r",
+                  "    pm.expect(json.role).to.eql(\"ADMIN\");\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response time under 2 seconds\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Content-Type is JSON\", function () {\r",
+                  "    pm.response.to.have.header(\"Content-Type\");\r",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Admin registered successfully\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Admin\",\r\n    \"email\": \"admin@college.com\",\r\n    \"password\": \"admin12345\",\r\n    \"phone\": \"9999999999\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/admin/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "admin",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register Faculty",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 201 Created\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Faculty registration successful with FACULTY role\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json.message).to.eql(\"Faculty Registration Successful!\");\r",
+                  "    pm.expect(json.role).to.eql(\"FACULTY\");\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response time under 2 seconds\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Faculty registered successfully\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Dr. Sharma\",\r\n    \"email\": \"sharma@college.com\",\r\n    \"phone\": \"9888877777\",\r\n    \"password\": \"faculty123\",\r\n    \"designation\": \"Professor\",\r\n    \"department\": \"CSE\",\r\n    \"qualification\": \"PhD\",\r\n    \"experienceYears\": 10\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/faculty/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "faculty",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register Student",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 201 Created\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Student registration successful with STUDENT role\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json.message).to.eql(\"Student Registration Successful!\");\r",
+                  "    pm.expect(json.role).to.eql(\"STUDENT\");\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response time under 2 seconds\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Student registered successfully\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"rollNumber\": \"CSE2020301\",\r\n    \"name\": \"Pranay Panakanti\",\r\n    \"email\": \"panakantipranay@gmail.com\",\r\n    \"phone\": \"9876543210\",\r\n    \"password\": \"student123\",\r\n    \"enrollmentYear\": 2025,\r\n    \"semester\": \"6\",\r\n    \"branch\": \"CSE\",\r\n    \"dob\": \"2006-07-17\",\r\n    \"address\": \"Hyderabad\",\r\n    \"city\": \"Hyderabad\",\r\n    \"pincode\": \"500001\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/student/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "student",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register Second Student",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 201 Created\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Second student registered\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json.message).to.eql(\"Student Registration Successful!\");\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Second student registered for multi-student tests\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"rollNumber\": \"CSE2025002\",\r\n    \"name\": \"Rahul Kumar\",\r\n    \"email\": \"rahul@college.com\",\r\n    \"phone\": \"9876543211\",\r\n    \"password\": \"student123\",\r\n    \"enrollmentYear\": 2025,\r\n    \"semester\": \"1\",\r\n    \"branch\": \"CSE\",\r\n    \"dob\": \"2002-08-20\",\r\n    \"address\": \"Mumbai\",\r\n    \"city\": \"Mumbai\",\r\n    \"pincode\": \"400001\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/student/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "student",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Auth - Login",
+      "item": [
+        {
+          "name": "Login Admin",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200 OK\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Login successful with JWT token and ADMIN role\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json.success).to.eql(true);\r",
+                  "    pm.expect(json.message).to.eql(\"Login successful!\");\r",
+                  "    pm.expect(json.data.token).to.be.a(\"string\");\r",
+                  "    pm.expect(json.data.token.length).to.be.greaterThan(20);\r",
+                  "    pm.expect(json.data.email).to.eql(\"admin@college.com\");\r",
+                  "    pm.expect(json.data.role).to.eql(\"ADMIN\");\r",
+                  "});\r",
+                  "\r",
+                  "var json = pm.response.json();\r",
+                  "if (json.data && json.data.token) {\r",
+                  "    pm.environment.set(\"admin_token\", json.data.token);\r",
+                  "    pm.environment.set(\"admin_id\", 1);\r",
+                  "    console.log(\"✅ Admin token saved to environment\");\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"admin@college.com\",\r\n    \"password\": \"admin12345\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/admin/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "admin",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login Faculty",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200 OK\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Faculty login successful with JWT token\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json.success).to.eql(true);\r",
+                  "    pm.expect(json.data.token).to.be.a(\"string\");\r",
+                  "    pm.expect(json.data.role).to.eql(\"FACULTY\");\r",
+                  "});\r",
+                  "\r",
+                  "var json = pm.response.json();\r",
+                  "if (json.data && json.data.token) {\r",
+                  "    pm.environment.set(\"faculty_token\", json.data.token);\r",
+                  "    pm.environment.set(\"faculty_id\", 1);\r",
+                  "    console.log(\"✅ Faculty token saved to environment\");\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"sharma@college.com\",\r\n    \"password\": \"faculty123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/faculty/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "faculty",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login Student",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200 OK\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Student login successful with JWT and STUDENT role\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json.success).to.eql(true);\r",
+                  "    pm.expect(json.message).to.eql(\"Login successful!\");\r",
+                  "    pm.expect(json.data.token).to.be.a(\"string\");\r",
+                  "    pm.expect(json.data.email).to.eql(\"panakantipranay@gmail.com\");\r",
+                  "    pm.expect(json.data.role).to.eql(\"STUDENT\");\r",
+                  "});\r",
+                  "\r",
+                  "var json = pm.response.json();\r",
+                  "if (json.data && json.data.token) {\r",
+                  "    pm.environment.set(\"student_token\", json.data.token);\r",
+                  "    console.log(\"✅ Student token saved to environment\");\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"panakantipranay@gmail.com\",\r\n    \"password\": \"student123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/student/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "student",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login with Wrong Password (Negative Test)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 401 Unauthorized\", function () {\r",
+                  "    pm.response.to.have.status(401);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Login failed with correct error message\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json.success).to.eql(false);\r",
+                  "    pm.expect(json.message).to.eql(\"Invalid Credentials!\");\r",
+                  "    pm.expect(json.data).to.be.null;\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Bad credentials correctly rejected\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"panakantipranay@gmail.com\",\r\n    \"password\": \"wrongpassword\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/student/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "student",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Auth - Password Reset",
+      "item": [
+        {
+          "name": "Forgot Password",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200 OK\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Reset token generated\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json).to.have.property(\"token\");\r",
+                  "    pm.expect(json.token).to.be.a(\"string\");\r",
+                  "    pm.expect(json.token.length).to.be.greaterThan(10);\r",
+                  "});\r",
+                  "\r",
+                  "var json = pm.response.json();\r",
+                  "if (json.token) {\r",
+                  "    pm.environment.set(\"reset_token\", json.token);\r",
+                  "    console.log(\"✅ Reset token saved: \" + json.token.substring(0, 8) + \"...\");\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"panakantipranay@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/forgot-password",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "forgot-password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Forgot Password - Email Not Found (Negative Test)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 404 Not Found\", function () {\r",
+                  "    pm.response.to.have.status(404);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Error message for unknown email\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json.message).to.include(\"No account found\");\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Nonexistent email correctly rejected\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"nonexistent@college.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/forgot-password",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "forgot-password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reset Password",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200 OK\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Password reset successful\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json.message).to.eql(\"Password reset successfully!\");\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Password reset successful — student password is now 'resetpass123'\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"token\": \"{{reset_token}}\",\r\n    \"newPassword\": \"resetpass123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/reset-password",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "reset-password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reset Password - Reuse Same Token (Negative Test)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 400 Bad Request\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Token already used is rejected\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json.message).to.include(\"already been used\");\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Used token correctly rejected\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"token\": \"{{reset_token}}\",\r\n    \"newPassword\": \"anotherpass123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/reset-password",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "reset-password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Re-Login Student (with new password after reset)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200 OK\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Login works with reset password\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json.success).to.eql(true);\r",
+                  "    pm.expect(json.data.token).to.be.a(\"string\");\r",
+                  "});\r",
+                  "\r",
+                  "var json = pm.response.json();\r",
+                  "if (json.data && json.data.token) {\r",
+                  "    pm.environment.set(\"student_token\", json.data.token);\r",
+                  "    console.log(\"✅ Student token refreshed after password reset\");\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"panakantipranay@gmail.com\",\r\n    \"password\": \"resetpass123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/student/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "student",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Student Profile",
+      "item": [
+        {
+          "name": "Get My Profile",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200 OK\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Profile has all required fields\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json).to.have.property(\"id\");\r",
+                  "    pm.expect(json).to.have.property(\"rollNumber\");\r",
+                  "    pm.expect(json).to.have.property(\"name\");\r",
+                  "    pm.expect(json).to.have.property(\"email\");\r",
+                  "    pm.expect(json).to.have.property(\"phone\");\r",
+                  "    pm.expect(json).to.have.property(\"branch\");\r",
+                  "    pm.expect(json).to.have.property(\"semester\");\r",
+                  "    pm.expect(json).to.have.property(\"enrollmentYear\");\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Profile data is correct\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json.email).to.eql(\"panakantipranay@gmail.com\");\r",
+                  "    pm.expect(json.rollNumber).to.eql(\"CSE2020301\");\r",
+                  "    pm.expect(json.name).to.eql(\"Pranay Panakanti\");\r",
+                  "    pm.expect(json.branch).to.eql(\"CSE\");\r",
+                  "});\r",
+                  "\r",
+                  "var json = pm.response.json();\r",
+                  "if (json.id) {\r",
+                  "    pm.environment.set(\"student_id\", json.id);\r",
+                  "    console.log(\"✅ Student ID saved: \" + json.id);\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{student_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/students/me",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "students",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Student Profile",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200 OK\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Profile updated successfully\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json.message).to.eql(\"Student updated successfully!\");\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Student profile updated\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{student_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"phone\": \"8765432109\",\r\n    \"address\": \"Jubilee Hills, Hyderabad\",\r\n    \"city\": \"Hyderabad\",\r\n    \"pincode\": \"500033\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/students/{{student_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "students",
+                "{{student_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Change Password",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200 OK\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Password changed successfully\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json.message).to.eql(\"Password changed successfully!\");\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Password changed — new password is 'finalpass789'\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{student_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"currentPassword\": \"resetpass123\",\r\n    \"newPassword\": \"finalpass789\",\r\n    \"confirmPassword\": \"finalpass789\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/students/change-password",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "students",
+                "change-password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Change Password - Wrong Current (Negative Test)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 400 Bad Request\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Wrong current password rejected\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json.message).to.include(\"Current password is incorrect\");\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Wrong current password correctly rejected\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{student_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"currentPassword\": \"wrongcurrent\",\r\n    \"newPassword\": \"anything123\",\r\n    \"confirmPassword\": \"anything123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/students/change-password",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "students",
+                "change-password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Re-Login Student (final password)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status 200\", function () { pm.response.to.have.status(200); });\r",
+                  "\r",
+                  "var json = pm.response.json();\r",
+                  "if (json.data && json.data.token) {\r",
+                  "    pm.environment.set(\"student_token\", json.data.token);\r",
+                  "    console.log(\"✅ Student token refreshed with final password\");\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"panakantipranay@gmail.com\",\r\n    \"password\": \"finalpass789\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/student/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "student",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Admin - Subjects",
+      "item": [
+        {
+          "name": "Add Subject 1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 201 Created\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Subject added successfully\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json.message).to.include(\"Subject added\");\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Subject CS101 - Data Structures added\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"subjectCode\": \"CS101\",\r\n    \"subjectName\": \"Data Structures\",\r\n    \"branch\": \"CSE\",\r\n    \"semester\": \"1\",\r\n    \"credits\": 4,\r\n    \"theoryMarks\": 70,\r\n    \"practicalMarks\": 30\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/subjects",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "subjects"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Subject 2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 201 Created\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Second subject added\", function () {\r",
+                  "    pm.expect(pm.response.json().message).to.include(\"Subject added\");\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Subject CS102 - Programming in C added\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"subjectCode\": \"CS102\",\r\n    \"subjectName\": \"Programming in C\",\r\n    \"branch\": \"CSE\",\r\n    \"semester\": \"1\",\r\n    \"credits\": 3,\r\n    \"theoryMarks\": 60,\r\n    \"practicalMarks\": 40\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/subjects",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "subjects"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Duplicate Subject (Negative Test)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 409 Conflict\", function () {\r",
+                  "    pm.response.to.have.status(409);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Duplicate subject rejected\", function () {\r",
+                  "    pm.expect(pm.response.json().message).to.include(\"already exists\");\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Duplicate subject correctly rejected\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"subjectCode\": \"CS101\",\r\n    \"subjectName\": \"Data Structures Duplicate\",\r\n    \"branch\": \"CSE\",\r\n    \"semester\": \"1\",\r\n    \"credits\": 4,\r\n    \"theoryMarks\": 70,\r\n    \"practicalMarks\": 30\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/subjects",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "subjects"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Subjects",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200 OK\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Returns array with at least 2 subjects\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json).to.be.an(\"array\");\r",
+                  "    pm.expect(json.length).to.be.at.least(2);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Each subject has required fields\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    json.forEach(function(subject) {\r",
+                  "        pm.expect(subject).to.have.property(\"id\");\r",
+                  "        pm.expect(subject).to.have.property(\"subjectCode\");\r",
+                  "        pm.expect(subject).to.have.property(\"subjectName\");\r",
+                  "        pm.expect(subject).to.have.property(\"branch\");\r",
+                  "        pm.expect(subject).to.have.property(\"credits\");\r",
+                  "    });\r",
+                  "});\r",
+                  "\r",
+                  "var json = pm.response.json();\r",
+                  "if (json.length > 0) {\r",
+                  "    pm.environment.set(\"subject_id\", json[0].id);\r",
+                  "    console.log(\"✅ Subject ID saved: \" + json[0].id);\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/admin/subjects",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "subjects"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filter Subjects by Branch & Semester",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200 OK\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Filtered results are all CSE semester 1\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json).to.be.an(\"array\");\r",
+                  "    json.forEach(function(subject) {\r",
+                  "        pm.expect(subject.branch).to.eql(\"CSE\");\r",
+                  "        pm.expect(subject.semester).to.eql(\"1\");\r",
+                  "    });\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Subject filter working correctly\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/admin/subjects/filter?branch=CSE&semester=6",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "subjects",
+                "filter"
+              ],
+              "query": [
+                {
+                  "key": "branch",
+                  "value": "CSE"
+                },
+                {
+                  "key": "semester",
+                  "value": "6"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Admin - Courses",
+      "item": [
+        {
+          "name": "Create Course",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 201 Created\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Course created with courseId returned\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json.message).to.include(\"Course created\");\r",
+                  "    pm.expect(json).to.have.property(\"courseId\");\r",
+                  "});\r",
+                  "\r",
+                  "var json = pm.response.json();\r",
+                  "if (json.courseId) {\r",
+                  "    pm.environment.set(\"course_id\", json.courseId);\r",
+                  "    console.log(\"✅ Course ID saved: \" + json.courseId);\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"facultyId\": {{faculty_id}},\r\n    \"subjectId\": {{subject_id}},\r\n    \"semester\": \"1\",\r\n    \"section\": \"A\",\r\n    \"academicYear\": \"2025-26\",\r\n    \"totalClasses\": 40\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/courses",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "courses"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Courses",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200 OK\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Returns array with at least 1 course\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json).to.be.an(\"array\");\r",
+                  "    pm.expect(json.length).to.be.at.least(1);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Course has all response fields\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    var course = json[0];\r",
+                  "    pm.expect(course).to.have.property(\"id\");\r",
+                  "    pm.expect(course).to.have.property(\"subjectCode\");\r",
+                  "    pm.expect(course).to.have.property(\"subjectName\");\r",
+                  "    pm.expect(course).to.have.property(\"facultyName\");\r",
+                  "    pm.expect(course).to.have.property(\"semester\");\r",
+                  "    pm.expect(course).to.have.property(\"section\");\r",
+                  "    pm.expect(course).to.have.property(\"academicYear\");\r",
+                  "    pm.expect(course).to.have.property(\"totalClasses\");\r",
+                  "});\r",
+                  "\r",
+                  "var json = pm.response.json();\r",
+                  "if (!pm.environment.get(\"course_id\") && json.length > 0) {\r",
+                  "    pm.environment.set(\"course_id\", json[0].id);\r",
+                  "}\r",
+                  "\r",
+                  "console.log(\"✅ All courses retrieved successfully\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/admin/courses",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "courses"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Course by ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200 OK\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Course details are correct\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json.id).to.eql(parseInt(pm.environment.get(\"course_id\")));\r",
+                  "    pm.expect(json.subjectCode).to.eql(\"CS101\");\r",
+                  "    pm.expect(json.facultyName).to.eql(\"Dr. Sharma\");\r",
+                  "    pm.expect(json.section).to.eql(\"A\");\r",
+                  "    pm.expect(json.academicYear).to.eql(\"2025-26\");\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Single course retrieved correctly\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/courses/{{course_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "courses",
+                "{{course_id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Admin - Fee Structure",
+      "item": [
+        {
+          "name": "Create Fee Structure",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 201 Created\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Fee structure created with correct total\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json.message).to.include(\"Fee structure created\");\r",
+                  "    pm.expect(json.totalFee).to.eql(95000);\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Fee structure created — total: 95000\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"branch\": \"CSE\",\r\n    \"semester\": \"1\",\r\n    \"tuitionFee\": 50000,\r\n    \"hostelFee\": 30000,\r\n    \"libraryFee\": 5000,\r\n    \"labFee\": 10000,\r\n    \"dueDate\": \"2026-06-30\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/fee-structure",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "fee-structure"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Fee Structures",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200 OK\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Returns at least 1 fee structure\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json).to.be.an(\"array\");\r",
+                  "    pm.expect(json.length).to.be.at.least(1);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Fee structure has all fields\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    var fs = json[0];\r",
+                  "    pm.expect(fs).to.have.property(\"id\");\r",
+                  "    pm.expect(fs).to.have.property(\"branch\");\r",
+                  "    pm.expect(fs).to.have.property(\"tuitionFee\");\r",
+                  "    pm.expect(fs).to.have.property(\"hostelFee\");\r",
+                  "    pm.expect(fs).to.have.property(\"totalFee\");\r",
+                  "});\r",
+                  "\r",
+                  "var json = pm.response.json();\r",
+                  "if (json.length > 0) {\r",
+                  "    pm.environment.set(\"fee_structure_id\", json[0].id);\r",
+                  "    console.log(\"✅ Fee structure ID saved: \" + json[0].id);\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/admin/fee-structure",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "fee-structure"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Duplicate Fee Structure (Negative Test)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 409 Conflict\", function () {\r",
+                  "    pm.response.to.have.status(409);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Duplicate fee structure rejected\", function () {\r",
+                  "    pm.expect(pm.response.json().message).to.include(\"already exists\");\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Duplicate fee structure correctly rejected\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"branch\": \"CSE\",\r\n    \"semester\": \"1\",\r\n    \"tuitionFee\": 60000,\r\n    \"hostelFee\": 35000,\r\n    \"libraryFee\": 6000,\r\n    \"labFee\": 12000,\r\n    \"dueDate\": \"2026-07-30\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/fee-structure",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "fee-structure"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Admin - Announcements",
+      "item": [
+        {
+          "name": "Create Announcement for All",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 201 Created\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Announcement created\", function () {\r",
+                  "    pm.expect(pm.response.json().message).to.include(\"Announcement created\");\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Announcement created for ALL\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"Welcome to Academic Year 2025-26\",\r\n    \"description\": \"Classes will begin from January 8th. All students must complete enrollment by January 5th.\",\r\n    \"targetAudience\": \"ALL\",\r\n    \"expiresAt\": \"2026-12-31\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/announcements/{{admin_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "announcements",
+                "{{admin_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Announcement for Students Only",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 201\", function () { pm.response.to.have.status(201); });\r",
+                  "console.log(\"✅ Student-targeted announcement created\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"Fee Payment Deadline\",\r\n    \"description\": \"All students must pay semester fees before June 30th to avoid late penalty.\",\r\n    \"targetAudience\": \"STUDENT\",\r\n    \"expiresAt\": \"2026-06-30\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/announcements/{{admin_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "announcements",
+                "{{admin_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Announcements",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200 OK\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Returns at least 2 announcements\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json).to.be.an(\"array\");\r",
+                  "    pm.expect(json.length).to.be.at.least(2);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Announcement has all fields\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    var a = json[0];\r",
+                  "    pm.expect(a).to.have.property(\"id\");\r",
+                  "    pm.expect(a).to.have.property(\"title\");\r",
+                  "    pm.expect(a).to.have.property(\"description\");\r",
+                  "    pm.expect(a).to.have.property(\"targetAudience\");\r",
+                  "    pm.expect(a).to.have.property(\"createdByName\");\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Announcements retrieved — count: \" + pm.response.json().length);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{student_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/announcements",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "announcements"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filter Announcements by Target",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200\", function () { pm.response.to.have.status(200); });\r",
+                  "\r",
+                  "pm.test(\"All results targeted at STUDENT\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    json.forEach(function(a) {\r",
+                  "        pm.expect(a.targetAudience).to.eql(\"STUDENT\");\r",
+                  "    });\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Announcement filter by STUDENT working\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{student_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/announcements/filter?target=STUDENT",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "announcements",
+                "filter"
+              ],
+              "query": [
+                {
+                  "key": "target",
+                  "value": "STUDENT"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Student - Enrollment",
+      "item": [
+        {
+          "name": "Enroll Student in Course",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 201 Created\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Enrollment successful with ID returned\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json.message).to.include(\"Enrolled successfully\");\r",
+                  "    pm.expect(json).to.have.property(\"enrollmentId\");\r",
+                  "});\r",
+                  "\r",
+                  "var json = pm.response.json();\r",
+                  "if (json.enrollmentId) {\r",
+                  "    pm.environment.set(\"enrollment_id\", json.enrollmentId);\r",
+                  "    console.log(\"✅ Enrollment ID saved: \" + json.enrollmentId);\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{student_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"courseId\": {{course_id}},\r\n    \"subjectId\": {{subject_id}}\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/students/{{student_id}}/enroll",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "students",
+                "{{student_id}}",
+                "enroll"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Student Enrolled Courses",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200 OK\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Student has at least 1 enrollment\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json).to.be.an(\"array\");\r",
+                  "    pm.expect(json.length).to.be.at.least(1);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Enrollment has correct fields\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    var e = json[0];\r",
+                  "    pm.expect(e).to.have.property(\"enrollmentId\");\r",
+                  "    pm.expect(e).to.have.property(\"subjectCode\");\r",
+                  "    pm.expect(e).to.have.property(\"subjectName\");\r",
+                  "    pm.expect(e).to.have.property(\"status\");\r",
+                  "    pm.expect(e.status).to.eql(\"ACTIVE\");\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Student enrolled courses retrieved\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{student_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/students/{{student_id}}/courses",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "students",
+                "{{student_id}}",
+                "courses"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Faculty - Attendance",
+      "item": [
+        {
+          "name": "Mark Attendance - PRESENT",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 201 Created\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Attendance marked successfully\", function () {\r",
+                  "    pm.expect(pm.response.json().message).to.include(\"Attendance marked\");\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Attendance marked PRESENT for 2026-04-01\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{faculty_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"studentId\": {{student_id}},\r\n    \"classDate\": \"2026-04-01\",\r\n    \"status\": \"PRESENT\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/faculty/{{faculty_id}}/attendance/{{course_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "faculty",
+                "{{faculty_id}}",
+                "attendance",
+                "{{course_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Mark Attendance - ABSENT (different date)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 201\", function () { pm.response.to.have.status(201); });\r",
+                  "pm.test(\"Attendance marked\", function () {\r",
+                  "    pm.expect(pm.response.json().message).to.include(\"Attendance marked\");\r",
+                  "});\r",
+                  "console.log(\"✅ Attendance marked ABSENT for 2026-04-02\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{faculty_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"studentId\": {{student_id}},\r\n    \"classDate\": \"2026-04-02\",\r\n    \"status\": \"ABSENT\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/faculty/{{faculty_id}}/attendance/{{course_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "faculty",
+                "{{faculty_id}}",
+                "attendance",
+                "{{course_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Mark Attendance - Duplicate Same Date (Negative Test)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 409 Conflict\", function () {\r",
+                  "    pm.response.to.have.status(409);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Duplicate attendance rejected\", function () {\r",
+                  "    pm.expect(pm.response.json().message).to.include(\"already marked\");\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Duplicate attendance correctly rejected\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{faculty_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"studentId\": {{student_id}},\r\n    \"classDate\": \"2026-04-01\",\r\n    \"status\": \"PRESENT\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/faculty/{{faculty_id}}/attendance/{{course_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "faculty",
+                "{{faculty_id}}",
+                "attendance",
+                "{{course_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Student Attendance for Course",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200 OK\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Returns array with 2 attendance records\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json).to.be.an(\"array\");\r",
+                  "    pm.expect(json.length).to.eql(2);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Attendance records have correct fields\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    json.forEach(function(a) {\r",
+                  "        pm.expect(a).to.have.property(\"studentRollNumber\");\r",
+                  "        pm.expect(a).to.have.property(\"studentName\");\r",
+                  "        pm.expect(a).to.have.property(\"classDate\");\r",
+                  "        pm.expect(a).to.have.property(\"status\");\r",
+                  "    });\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Has both PRESENT and ABSENT records\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    var statuses = json.map(a => a.status);\r",
+                  "    pm.expect(statuses).to.include(\"PRESENT\");\r",
+                  "    pm.expect(statuses).to.include(\"ABSENT\");\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Student attendance retrieved — 2 records\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{student_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/students/{{student_id}}/attendance/{{course_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "students",
+                "{{student_id}}",
+                "attendance",
+                "{{course_id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Faculty - Marks",
+      "item": [
+        {
+          "name": "Enter Marks for Student",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 201 Created\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Marks entered with grade calculation\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json.message).to.include(\"Marks entered\");\r",
+                  "    pm.expect(json).to.have.property(\"grade\");\r",
+                  "    pm.expect(json).to.have.property(\"total\");\r",
+                  "    pm.expect(json.total).to.eql(90);\r",
+                  "    pm.expect(json.grade).to.eql(\"A+\"); \r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Marks entered — Total: 90, Grade: A+\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{faculty_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"studentId\": {{student_id}},\r\n    \"subjectId\": {{subject_id}},\r\n    \"theoryMarks\": 65,\r\n    \"practicalMarks\": 25,\r\n    \"semester\": \"1\",\r\n    \"academicYear\": \"2025-26\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/faculty/marks/{{course_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "faculty",
+                "marks",
+                "{{course_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Enter Marks Duplicate (Negative Test)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 409 Conflict\", function () {\r",
+                  "    pm.response.to.have.status(409);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Duplicate marks rejected\", function () {\r",
+                  "    pm.expect(pm.response.json().message).to.include(\"already entered\");\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Duplicate marks correctly rejected\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{faculty_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"studentId\": {{student_id}},\r\n    \"subjectId\": {{subject_id}},\r\n    \"theoryMarks\": 70,\r\n    \"practicalMarks\": 20,\r\n    \"semester\": \"1\",\r\n    \"academicYear\": \"2025-26\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/faculty/marks/{{course_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "faculty",
+                "marks",
+                "{{course_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Student Marks",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200 OK\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Returns marks array with at least 1 entry\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json).to.be.an(\"array\");\r",
+                  "    pm.expect(json.length).to.be.at.least(1);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Marks entry has all fields with correct values\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    var m = json[0];\r",
+                  "    pm.expect(m).to.have.property(\"studentRollNumber\");\r",
+                  "    pm.expect(m).to.have.property(\"studentName\");\r",
+                  "    pm.expect(m).to.have.property(\"subjectCode\");\r",
+                  "    pm.expect(m).to.have.property(\"theoryMarks\");\r",
+                  "    pm.expect(m).to.have.property(\"practicalMarks\");\r",
+                  "    pm.expect(m).to.have.property(\"totalMarks\");\r",
+                  "    pm.expect(m).to.have.property(\"grade\");\r",
+                  "    pm.expect(m.totalMarks).to.eql(90);\r",
+                  "    pm.expect(m.grade).to.eql(\"A+\");\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Student marks retrieved — Grade: A+\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{student_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/students/{{student_id}}/marks",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "students",
+                "{{student_id}}",
+                "marks"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Student - Fees",
+      "item": [
+        {
+          "name": "Make Fee Payment",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 201 Created\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Payment recorded with receipt and PAID status\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json.message).to.include(\"Payment recorded\");\r",
+                  "    pm.expect(json).to.have.property(\"receipt\");\r",
+                  "    pm.expect(json.receipt).to.include(\"RCP-\");\r",
+                  "    pm.expect(json.status).to.eql(\"PAID\");\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Full fee payment recorded — Status: PAID\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{student_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"feeStructureId\": {{fee_structure_id}},\r\n    \"amountPaid\": 95000,\r\n    \"transactionId\": \"TXN-2026-04-001\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/students/{{student_id}}/pay-fee",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "students",
+                "{{student_id}}",
+                "pay-fee"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Make Partial Fee Payment (Second Student simulation)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 201 Created\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Partial payment recorded correctly\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json.status).to.eql(\"PARTIAL\");\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Partial payment recorded — Status: PARTIAL\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{student_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"feeStructureId\": {{fee_structure_id}},\r\n    \"amountPaid\": 50000,\r\n    \"transactionId\": \"TXN-2026-04-002\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/students/{{student_id}}/pay-fee",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "students",
+                "{{student_id}}",
+                "pay-fee"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Student Fee Payments",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200 OK\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Returns at least 2 payment records\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json).to.be.an(\"array\");\r",
+                  "    pm.expect(json.length).to.be.at.least(2);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Payment record has all fields\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    var p = json[0];\r",
+                  "    pm.expect(p).to.have.property(\"receiptNumber\");\r",
+                  "    pm.expect(p).to.have.property(\"amountPaid\");\r",
+                  "    pm.expect(p).to.have.property(\"totalFee\");\r",
+                  "    pm.expect(p).to.have.property(\"balanceDue\");\r",
+                  "    pm.expect(p).to.have.property(\"paymentStatus\");\r",
+                  "    pm.expect(p).to.have.property(\"paymentDate\");\r",
+                  "    pm.expect(p).to.have.property(\"transactionId\");\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Balance calculation is correct\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    json.forEach(function(p) {\r",
+                  "        pm.expect(p.balanceDue).to.eql(p.totalFee - p.amountPaid);\r",
+                  "    });\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Student fee payments retrieved — \" + pm.response.json().length + \" records\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{student_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/students/{{student_id}}/fees",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "students",
+                "{{student_id}}",
+                "fees"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Student - View Data",
+      "item": [
+        {
+          "name": "Get All Students (Admin)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200\", function () { pm.response.to.have.status(200); });\r",
+                  "\r",
+                  "pm.test(\"Returns array with at least 2 students\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json).to.be.an(\"array\");\r",
+                  "    pm.expect(json.length).to.be.at.least(2);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Each student has all fields\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    json.forEach(function(s) {\r",
+                  "        pm.expect(s).to.have.all.keys(\"id\",\"rollNumber\",\"name\",\"email\",\"phone\",\"enrollmentYear\",\"semester\",\"branch\",\"address\",\"city\",\"pincode\");\r",
+                  "    });\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ All students listed — count: \" + pm.response.json().length);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/admin/students",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "students"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filter Students by Branch & Semester",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200\", function () { pm.response.to.have.status(200); });\r",
+                  "\r",
+                  "pm.test(\"All filtered students are CSE semester 1\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json).to.be.an(\"array\");\r",
+                  "    json.forEach(function(s) {\r",
+                  "        pm.expect(s.branch).to.eql(\"CSE\");\r",
+                  "        pm.expect(s.semester).to.eql(\"1\");\r",
+                  "    });\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Student filter working\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{admin_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/admin/students/filter?branch=CSE&semester=1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "students",
+                "filter"
+              ],
+              "query": [
+                {
+                  "key": "branch",
+                  "value": "CSE"
+                },
+                {
+                  "key": "semester",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "RBAC & Error Tests",
+      "item": [
+        {
+          "name": "Student Accessing Admin Endpoint (403 Test)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 403 Forbidden\", function () {\r",
+                  "    pm.response.to.have.status(403);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"RBAC blocks student from admin endpoints\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(403);\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ RBAC test passed — Student blocked from admin endpoint\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{student_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/admin/students",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "students"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Faculty Accessing Admin Endpoint (403 Test)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 403 Forbidden\", function () {\r",
+                  "    pm.response.to.have.status(403);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Faculty cannot create subjects (admin only)\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(403);\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ RBAC test passed — Faculty blocked from admin endpoint\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{faculty_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"subjectCode\": \"HACK01\",\r\n    \"subjectName\": \"Unauthorized Subject\",\r\n    \"branch\": \"CSE\",\r\n    \"semester\": \"1\",\r\n    \"credits\": 3,\r\n    \"theoryMarks\": 70,\r\n    \"practicalMarks\": 30\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/subjects",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "subjects"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "No Token - Accessing Protected Endpoint (401/403 Test)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 401 or 403 — blocked without token\", function () {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([401, 403]);\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Unauthenticated request correctly blocked\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/students/me",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "students",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Error Test - Empty Registration",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 400 Bad Request\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Validation errors returned with field details\", function () {\r",
+                  "    var json = pm.response.json();\r",
+                  "    pm.expect(json.message).to.eql(\"Validation failed!\");\r",
+                  "    pm.expect(json.errors).to.be.an(\"object\");\r",
+                  "    pm.expect(Object.keys(json.errors).length).to.be.greaterThan(0);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Specific field errors present\", function () {\r",
+                  "    var errors = pm.response.json().errors;\r",
+                  "    var hasErrors = errors.hasOwnProperty(\"rollNumber\") || \r",
+                  "                    errors.hasOwnProperty(\"name\") || \r",
+                  "                    errors.hasOwnProperty(\"email\") ||\r",
+                  "                    errors.hasOwnProperty(\"semester\");\r",
+                  "    pm.expect(hasErrors).to.be.true;\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Validation errors returned correctly — \" + Object.keys(pm.response.json().errors).length + \" errors\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"rollNumber\": \"\",\r\n    \"name\": \"\",\r\n    \"email\": \"not-an-email\",\r\n    \"password\": \"123\",\r\n    \"enrollmentYear\": 1999,\r\n    \"semester\": \"\",\r\n    \"branch\": \"\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/student/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "student",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Duplicate Registration Test",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 409 Conflict\", function () {\r",
+                  "    pm.response.to.have.status(409);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Duplicate email rejected\", function () {\r",
+                  "    pm.expect(pm.response.json().message).to.include(\"already exists\");\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Duplicate registration correctly rejected\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"rollNumber\": \"CSE2025099\",\r\n    \"name\": \"Duplicate Test\",\r\n    \"email\": \"panakantipranay@gmail.com\",\r\n    \"phone\": \"9876543299\",\r\n    \"password\": \"password123\",\r\n    \"enrollmentYear\": 2025,\r\n    \"semester\": \"6\",\r\n    \"branch\": \"CSE\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/student/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "student",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Swagger UI Available",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Swagger UI is accessible (200 or 302)\", function () {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 302]);\r",
+                  "});\r",
+                  "\r",
+                  "console.log(\"✅ Swagger UI is accessible\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/swagger-ui/index.html",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "swagger-ui",
+                "index.html"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
